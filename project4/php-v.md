@@ -1,0 +1,8 @@
+``` sh
+vagrant@ubuntu-focal:/$ php -v
+PHP 7.4.32 (cli) (built: Sep 29 2022 22:24:52) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v3.4.0, Copyright (c) Zend Technologies
+    with Zend OPcache v7.4.32, Copyright (c), by Zend Technologies
+
+```
