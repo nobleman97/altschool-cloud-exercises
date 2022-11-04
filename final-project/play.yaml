@@ -1,0 +1,16 @@
+---
+  - name: Setup Web Server
+    hosts: web
+    become: true
+    become_method: sudo
+    roles: 
+    # - {role: php8.1}
+    - {role: composer}
+
+    tasks:
+
+      - name: Install Apache Server
+        apt: name=apache2 state=present
+
+
+        

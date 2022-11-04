@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - /home/david/Documents/altschool/projects/final-project/php8.1
