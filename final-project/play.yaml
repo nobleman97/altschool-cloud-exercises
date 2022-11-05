@@ -4,8 +4,8 @@
     become: true
     become_method: sudo
     roles: 
-    # - {role: php8.1}
-    # - {role: composer}
+    - {role: php8.1}
+    - {role: composer}
 
     tasks:
 
@@ -30,13 +30,36 @@
           update: yes
         when: not repoStat.stat.exists
 
-      # - name: Compose updates
-      #   include_role: 
-      #     name: compose-cmds
+      - name: Compose updates
+        include_role: 
+          name: compose-cmds
 
       - name: Move proj, enable new apache site
         include_role:
           name: move-proj
+
+      - name: Install and configure MySQL
+        include_role:
+          name: roles/geerlingguy.mysql
+
+      - name: Create DB LaravelApp
+        include_role:
+          name: db-actions
+
+      - name: Replace values /var/www/html/final-project/.env file
+        lineinfile:
+          path: /var/www/html/final-project/.env
+          regexp: '^{{item.key}}='
+          line: "{{item.key}}={{item.value}}"
+        with_dict: {DB_CONNECTION: mysql, DB_HOST: 127.0.0.1, DB_PORT: 3306, DB_DATABASE: LaravelApp, DB_USERNAME: root, DB_PASSWORD: root}      
+
+      - name: Seed the DB
+        include_role:
+          name: db-seed
+
+      - name: Change permissions
+        include_role:
+          name: change-perms
 
     handlers:
       - name: Reload Apache

@@ -1,0 +1,10 @@
+---
+
+- name: Change ownership to the Laravel Log File
+  shell: |
+    echo "" >> /var/www/html/final-project/storage/logs/laravel.log
+    chown www-data:www-data /var/www/html/final-project/storage/logs/laravel.log
+
+
+- name: Change permission to the Laravel Log File
+  shell: chmod 755 /var/www/html/final-project/storage/logs/laravel.log

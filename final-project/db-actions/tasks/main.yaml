@@ -1,0 +1,6 @@
+---
+
+- name: create db LaravelApp
+  mysql_db:
+    name: LaravelApp
+    state: present

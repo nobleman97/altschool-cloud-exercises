@@ -1,0 +1,6 @@
+---
+
+- name: Seed the DB
+  shell: php artisan migrate --seed
+  args:
+    chdir: /var/www/html/final-project/

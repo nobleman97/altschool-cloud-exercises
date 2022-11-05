@@ -1,6 +1,6 @@
 ---
 - name: Get MySQL version.
-  command: 'mysql --version'
+  shell: mysql --version
   register: mysql_cli_version
   changed_when: false
   check_mode: false
