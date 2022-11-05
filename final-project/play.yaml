@@ -5,12 +5,50 @@
     become_method: sudo
     roles: 
     # - {role: php8.1}
-    - {role: composer}
+    # - {role: composer}
 
     tasks:
 
       - name: Install Apache Server
         apt: name=apache2 state=present
+
+      - name: Install git
+        apt:
+          name: git
+          state: present
+          update_cache: yes
+
+      - name: Check if repo exists
+        stat: path=/root/final-project
+        register: repoStat
+
+      - name: Clone the git repo
+        git:
+          repo: https://github.com/f1amy/laravel-realworld-example-app.git
+          dest: /root/final-project
+          clone: yes
+          update: yes
+        when: not repoStat.stat.exists
+
+      # - name: Compose updates
+      #   include_role: 
+      #     name: compose-cmds
+
+      - name: Move proj, enable new apache site
+        include_role:
+          name: move-proj
+
+    handlers:
+      - name: Reload Apache
+        service:
+          name: apache2
+          state: reloaded
+
+      - name: Restart Apache
+        service:
+          name: apache2
+          state: restarted
+              
 
 
         

@@ -12,33 +12,4 @@
         sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
       when: not fileStat.stat.exists
 
-  # - name: Download and install Composer
-  #   shell: |
-  #     cd /tmp
-  #     curl -sS https://getcomposer.org/installer | php
-  #     touch /usr/bin/composer
-  #   become: true 
-  #     # args:
-  #     #   chdir: /tmp
-  #     #   creates: /usr/local/bin/composer
-  #     #   warn: false
-  #     # become: true
-
-  # - name: Add Composer to global path
-  #   copy:
-  #     src: /tmp/composer.phar
-  #     dest: /usr/bin/composer
-  #     group: root
-  #     mode: '0755'
-  #     owner: root
-  #     remote_src: yes
-  #   become: true
-
-  # - name: Test composer
-  #   shell: composer --help
-  #   register: composerOutPut
-
-  # - name: Print output
-  #   debug:
-  #     msg: "{{ composerOutPut }}"
 

@@ -1,0 +1,42 @@
+---
+
+- name: Change owner of folders and move to /var/www/html
+  shell: |
+    chown -R www-data:www-data final-project
+    chmod -R 755 final-project
+    mv final-project /var/www/html
+
+- name: "Configure the App’s Virtual Host in Apache"
+  blockinfile: 
+    content: |
+      <VirtualHost *:80>
+          ServerAdmin admin@example.com
+          ServerName laravel.example.com
+          DocumentRoot /var/www/html/final-project/public/
+          
+          <Directory /var/www/html/final-project/public/>
+                  Options Indexes FollowSymLinks
+                  AllowOverride All
+                  Require all granted
+          </Directory>
+          
+          ErrorLog ${APACHE_LOG_DIR}/error.log
+          CustomLog ${APACHE_LOG_DIR}/access.log combined
+      </VirtualHost>
+  args:
+    state: present
+    create: true
+    path: /etc/apache2/sites-available/laravel.conf
+
+# - name: Disable 000-default.conf and enable laravel.conf
+
+- name: Disable default Apache site
+  shell: /usr/sbin/a2dissite 000-default.conf
+  notify: Reload Apache
+
+- name: Enable new site
+  shell: a2enmod rewrite &&  /usr/sbin/a2ensite laravel.conf
+  notify: Reload Apache
+
+
+

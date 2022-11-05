@@ -1,0 +1,17 @@
+---
+
+- name: Update project dependencies
+  # community.general.composer:
+  #   command: update
+  #   working_dir: /root/proj/laravel-realworld-example-app
+  # become: true
+  # become_user: not_root_user
+  shell: |
+    composer update --no-interaction
+    composer update friendsofphp/php-cs-fixer --no-interaction
+    composer create-project --no-interaction
+  args: 
+    chdir: /root/final-project
+
+
+

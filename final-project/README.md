@@ -1,7 +1,7 @@
 # Final-Project: Deploy Laravel Application with Apache Using Ansible 
 
 ### Resources Used...
-- 
+- https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-apache-on-ubuntu-18-04
 - 
 
 Dependencies:
