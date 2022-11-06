@@ -4,8 +4,8 @@
     become: true
     become_method: sudo
     roles: 
-    - {role: php8.1}
-    - {role: composer}
+    - {role: roles/php8.1}
+    - {role: roles/composer}
 
     tasks:
 
@@ -32,19 +32,19 @@
 
       - name: Compose updates
         include_role: 
-          name: compose-cmds
+          name: roles/compose-cmds
 
       - name: Move proj, enable new apache site
         include_role:
-          name: move-proj
+          name: roles/move-proj
 
       - name: Install and configure MySQL
         include_role:
-          name: roles/geerlingguy.mysql
+          name: roles/mysql
 
       - name: Create DB LaravelApp
         include_role:
-          name: db-actions
+          name: roles/db-actions
 
       - name: Replace values /var/www/html/final-project/.env file
         lineinfile:
@@ -55,11 +55,15 @@
 
       - name: Seed the DB
         include_role:
-          name: db-seed
+          name: roles/db-seed
 
       - name: Change permissions
         include_role:
-          name: change-perms
+          name: roles/change-perms
+
+      - name: Setup Postgres
+        include_role:
+          name: roles/postgresql
 
     handlers:
       - name: Reload Apache
