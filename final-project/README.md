@@ -21,3 +21,10 @@ ansible --private-key ~/.ssh/Zuri_droplet -u root web -m ping
 ``` sh
 ansible-playbook --private-key ~/.ssh/Zuri_droplet -u root play.yaml --check
 ```
+
+ssl was configured by running:
+``` bash
+$ apt install python3-certbot-apache
+$ certbot --apache -d nobleman.me
+
+```
