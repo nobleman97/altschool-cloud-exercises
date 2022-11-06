@@ -1,28 +1,22 @@
 # Final-Project: Deploy Laravel Application with Apache Using Ansible 
 
-### Resources Used...
-- https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-apache-on-ubuntu-18-04
-- 
 
-Dependencies:
-- php8.1, composer, apache, php8.1-mysql, php8.1-xml,php8.1-curl
-- 
-- 
-- 
+Here are my endpoints:
+- [https://nobleman.me/api/articles](https://nobleman.me/api/articles)
 
-```
-export ANSIBLE_INVENTORY=/home/david/Documents/altschool/projects/final-project/inventory.yaml
-```
+- [https://nobleman.me/api/tags](https://nobleman.me/api/tags)
 
-Ping server
-``` shell
-ansible --private-key ~/.ssh/Zuri_droplet -u root web -m ping
-```
-``` sh
-ansible-playbook --private-key ~/.ssh/Zuri_droplet -u root play.yaml --check
-```
 
-ssl was configured by running:
+## **Comments:**
+I successfully completed this project before the deadline.
+
+This was a lot! But I appreciate how this project helped me to become more skillful at using Ansible.
+
+
+
+## **Some Helpful commands**
+
+SSL was configured by running the following commands against the server:
 ``` bash
 $ apt install python3-certbot-apache
 $ certbot --apache -d nobleman.me
