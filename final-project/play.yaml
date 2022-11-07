@@ -46,6 +46,17 @@
         include_role:
           name: roles/db-actions
 
+      - name: Check if repo exists
+        stat: path=/var/www/html/final-project/.env
+        register: envState
+
+      - name: Copy .env into place
+        copy:
+          src: /var/www/html/final-project/.env.example
+          dest: /var/www/html/final-project/.env
+          remote_src: yes
+        when: not envState.stat.exists
+
       - name: Replace values /var/www/html/final-project/.env file
         lineinfile:
           path: /var/www/html/final-project/.env
