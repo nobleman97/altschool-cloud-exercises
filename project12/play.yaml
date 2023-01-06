@@ -1,0 +1,14 @@
+
+---
+  - name: Setup Web Server
+    hosts: nodes
+    become: true
+    become_method: sudo 
+    tasks:
+
+      - name: Set timezone to Africa/Lagos
+        timezone:
+          name: Africa/Lagos
+
+    
+
