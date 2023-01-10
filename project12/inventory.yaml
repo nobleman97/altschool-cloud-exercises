@@ -1,12 +1,12 @@
 [proxy]
-54.218.152.110 
+34.220.120.234
 
 [nodes]
-10.0.129.184
-10.0.140.47
+10.0.139.158
+10.0.141.135
 
 [nodes:vars]
-ansible_ssh_common_args="-o ProxyCommand=\"ssh -p 22 -W %h:%p ubuntu@54.218.152.110 -i ~/Downloads/altSchool.pem\""
+ansible_ssh_common_args="-o ProxyCommand=\"ssh -p 22 -W %h:%p ubuntu@34.220.120.234 -i ~/Downloads/altSchool.pem\""
 
 # The proxy is the Bastion host and the nodes are the
 # Private IP of the private EC2 instances

@@ -20,10 +20,10 @@
         apt: 
           name: nginx
           state: latest
-          # update_cache: yes
+          update_cache: yes
 
-      # - name: Install php8.1-fpm
-      #   command: "apt-get install php8.1-fpm -y"
+      - name: Install php8.1-fpm
+        command: "apt install php8.1-fpm -y"
 
       - name: Copy website files to the server's document root
         copy:
