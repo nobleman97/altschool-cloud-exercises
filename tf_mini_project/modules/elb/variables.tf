@@ -1,7 +1,7 @@
 variable "bucket" {
     description = ""
     type = string
-    default = "udagram-todo-dev"
+    default = "altschool-bucket-243545356"
 }
 
 variable "instances" {
@@ -16,4 +16,9 @@ variable "instance_ids" {
 
 variable "instance_count" {
     default = 3
+}
+
+variable "instance_sg" {
+    description = "security group of the instance collection"
+    
 }

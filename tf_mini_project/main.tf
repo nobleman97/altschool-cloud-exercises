@@ -28,13 +28,14 @@ module "ec2_collection" {
 module "mp_elb" {
   source = "./modules/elb"
 
-  instances = module.ec2_collection.instance_ips
+  instances    = module.ec2_collection.instance_ips
   instance_ids = module.ec2_collection.instance_ids
+  instance_sg  = module.ec2_collection.instance_sg
 }
 
 resource "null_resource" "write_ips_to_file" {
   triggers = {
-    
+
     ips = module.ec2_collection.instance_ips[0]
   }
 
@@ -55,3 +56,9 @@ resource "null_resource" "write_ips_to_file" {
   }
 }
 
+# module "route53_subdomain" {
+#   source = "./modules/route53"
+
+#   elb_dns_name = module.mp_elb.dns_name
+#   elb_zone_id = module.mp_elb.dns_zone_id
+# }
