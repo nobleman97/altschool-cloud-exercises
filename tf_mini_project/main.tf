@@ -31,3 +31,27 @@ module "mp_elb" {
   instances = module.ec2_collection.instance_ips
   instance_ids = module.ec2_collection.instance_ids
 }
+
+resource "null_resource" "write_ips_to_file" {
+  triggers = {
+    
+    ips = module.ec2_collection.instance_ips[0]
+  }
+
+  provisioner "local-exec" {
+    command = <<EOF
+
+
+      echo "[webserver]" > ./host-inventory 
+
+      clean_ips=$(echo $(terraform output mp_instance_ips) | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | sed 's/"//g')
+
+      for each_ip in $clean_ips; do
+        echo $each_ip >> ./host-inventory
+        
+      done
+
+    EOF
+  }
+}
+
