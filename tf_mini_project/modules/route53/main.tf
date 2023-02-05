@@ -1,6 +1,10 @@
+
+
+
+
 resource "aws_route53_record" "subdomain" {
-  zone_id = aws_route53_zone.nobleman.zone_id
-  name    = "terraform-test.nobleman.me"
+  zone_id = aws_route53_zone.my_domain.zone_id
+  name    = "terraform-test.${var.domain_name}"
   type    = "A"
 
   alias {
@@ -10,6 +14,6 @@ resource "aws_route53_record" "subdomain" {
   }
 }
 
-resource "aws_route53_zone" "nobleman" {
-  name = "nobleman.me"
+resource "aws_route53_zone" "my_domain" {
+  name = var.domain_name
 }

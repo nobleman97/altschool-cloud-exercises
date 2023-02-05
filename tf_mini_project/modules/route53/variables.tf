@@ -8,3 +8,6 @@ variable "elb_zone_id" {
     type = string
 }
 
+variable "domain_name" {
+    default = "nobleman.me"
+}

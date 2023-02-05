@@ -56,9 +56,9 @@ resource "null_resource" "write_ips_to_file" {
   }
 }
 
-# module "route53_subdomain" {
-#   source = "./modules/route53"
+module "route53_subdomain" {
+  source = "./modules/route53"
 
-#   elb_dns_name = module.mp_elb.dns_name
-#   elb_zone_id = module.mp_elb.dns_zone_id
-# }
+  elb_dns_name = module.mp_elb.dns_name
+  elb_zone_id = module.mp_elb.dns_zone_id
+}
